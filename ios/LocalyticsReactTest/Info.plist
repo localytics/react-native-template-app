@@ -46,10 +46,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>geofences use location to provide places campaign</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We just want it!</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Location is used for geofences</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Location is used to report campaign triggered location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
