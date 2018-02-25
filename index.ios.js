@@ -12,8 +12,70 @@ import {
   Text,
   ScrollView,
   Button,
+  NativeEventEmitter,
   NativeAppEventEmitter
 } from 'react-native';
+
+const notificationSettings = (enabled) => {
+  NativeModules.LLLocalytics.openSession();
+  NativeModules.LLLocalytics.tagScreen("misc");
+  console.log("Notification Settings should now be set to :", enabled);
+  NativeModules.LLLocalytics.didRegisterUserNotificationSettings();
+  NativeModules.LLLocalytics.tagScreen("notificationSettings");
+  NativeModules.LLLocalytics.closeSession();
+  NativeModules.LLLocalytics.upload();
+};
+
+const analyticsEventValidators = () => {
+  NativeModules.LLLocalytics.setMessagingEventsEnabled(true);
+  const emitter = new NativeEventEmitter(NativeModules.LLAnalyticsEmitter);
+  const subscription = emitter.addListener("localyticsSessionWillOpen", () => {"Received Event :", "localyticsSessionWillOpen" });
+  NativeModules.LLLocalytics.openSession();
+};
+
+const pushValidators = () => {
+  NativeModules.LLLocalytics.getPushToken().then((val) => { console.log("token=",val);});
+  NativeModules.LLLocalytics.setPushToken("d15489af21c55a3c4b680b69a01490a6831acc6b6af9b98cec628e1784641ef2");
+};
+
+const setOptions = () => {
+  NativeModules.LLLocalytics.setOptions({"min_region_dwell_time":0});
+  NativeModules.LLLocalytics.setOptions({"region_throttle_time":0});
+
+};
+
+const sessionTimeoutValidators = () => {
+  t = 2;
+  NativeModules.LLLocalytics.isLoggingEnabled().then((val) => { t = val;console.log("logging is ", val); });
+  NativeModules.LLLocalytics.setLoggingEnabled(true);
+  NativeModules.LLLocalytics.setOptions({"session_timeout":0});
+  NativeModules.LLLocalytics.closeSession();
+  NativeModules.LLLocalytics.tagScreen("UNTAGGED");
+  NativeModules.LLLocalytics.openSession();
+  NativeModules.LLLocalytics.tagScreen("appVersion");
+  NativeModules.LLLocalytics.tagScreen("two");
+  NativeModules.LLLocalytics.tagScreen("two");
+  // Not duplicate
+  NativeModules.LLLocalytics.tagScreen("appVersion");
+  NativeModules.LLLocalytics.setOptions({"session_timeout":15});
+  NativeModules.LLLocalytics.closeSession();
+  NativeModules.LLLocalytics.openSession();
+  // Should not be tagged
+  NativeModules.LLLocalytics.tagScreen("appVersion");
+  NativeModules.LLLocalytics.tagScreen("three");
+  NativeModules.LLLocalytics.setOptions({"session_timeout":0});
+  NativeModules.LLLocalytics.closeSession();
+  NativeModules.LLLocalytics.openSession();
+  NativeModules.LLLocalytics.upload();
+  console.warn("Logging value ", t);
+//  NativeModules.LLLocalytics.setLoggingEnabled(t);
+  
+};
+
+
+const inAppDismissButton = () => {
+  NativeModules.LLLocalytics.setInAppMessageDismissButtonImageWithName("748-heart.png");
+};
 
 const upload = () => {
   NativeModules.LLLocalytics.upload();
@@ -29,6 +91,7 @@ const closeSession = () => {
 
 const setOptedOut = (optedOut) => {
   NativeModules.LLLocalytics.setOptedOut(optedOut);
+  NativeModules.LLLocalytics.isOptedOut().then((value) => {if (value != optedOut) {console.warn("opted out mismatch");}});
 };
 
 const isOptedOut = () => {
@@ -55,6 +118,7 @@ const tagEvent = () => {
   NativeModules.LLLocalytics.tagShared({"contentName": "test", "contentId": "test", "contentType": "test", "methodName": "test", "attributes": attrs});
   NativeModules.LLLocalytics.tagCustomerRegistered({"customer": customer, "methodName": "test", "attributes": attrs});
   NativeModules.LLLocalytics.tagCustomerLoggedOut({"attributes": attrs});
+  NativeModules.LLLocalytics.tagCustomerLoggedOut(attrs);
   NativeModules.LLLocalytics.tagContentRated({"contentName": "test", "contentId": "test", "contentType": "test", "rating": 9, "attributes": attrs});
   NativeModules.LLLocalytics.tagCustomerLoggedIn({"customer": customer2, "methodName": "test", "attributes": attrs});
   NativeModules.LLLocalytics.tagInvited({"methodName": "test", "attributes": attrs});
@@ -66,10 +130,15 @@ const tagScreen = () => {
 
 const setCustomDimension = () => {
   NativeModules.LLLocalytics.setCustomDimension({"dimension": 0, "value": "test"});
+  for (i=1; i<20; i++) {
+  NativeModules.LLLocalytics.setCustomDimension({"dimension": i, "value": "test" + i});
+  }
 };
 
 const getCustomDimension = () => {
-  NativeModules.LLLocalytics.getCustomDimension(0).then((value) => console.log("custom dimension 0: " + value));
+  for (i=0; i<20; i++) {
+  NativeModules.LLLocalytics.getCustomDimension(i).then((value) => console.log("custom dimension " + i + ": " + value));
+	}
 };
 
 const setAnalyticsEventsEnabled = () => {
@@ -178,6 +247,14 @@ const isInAppAdIdParameterEnabled = () => {
   NativeModules.LLLocalytics.isAdidAppendedToInAppUrls().then((value) => console.log("in-app ad id param enabled: " + value));
 };
 
+const setInboxAdIdParameterEnabled = (enabled) => {
+  NativeModules.LLLocalytics.appendAdidToInboxUrls(enabled);
+};
+
+const isInboxAdIdParameterEnabled = () => {
+  NativeModules.LLLocalytics.isAdidAppendedToInboxUrls().then((value) => console.log("inbox ad id param enabled: " + value));
+};
+
 const tagInAppImpression = () => {
   NativeModules.LLLocalytics.tagInAppImpression({"campaignId": 415837, "action": "click"});
   NativeModules.LLLocalytics.tagInAppImpression({"campaignId": 415837, "action": "dismiss"});
@@ -203,12 +280,20 @@ const getInboxCampaigns = () => {
   NativeModules.LLLocalytics.getInboxCampaigns().then((value) => console.log("inbox campaigns: " + JSON.stringify(value)));
 };
 
+const getAllInboxCampaigns = () => {
+  NativeModules.LLLocalytics.getAllInboxCampaigns().then((value) => console.log("inbox all campaigns: " + JSON.stringify(value)));
+};
+
 const refreshInboxCampaigns = () => {
   NativeModules.LLLocalytics.refreshInboxCampaigns().then((value) => console.log("refresh inbox campaigns: " + JSON.stringify(value)));
 };
 
+const refreshAllInboxCampaigns = () => {
+  NativeModules.LLLocalytics.refreshAllInboxCampaigns().then((value) => console.log("refresh all inbox campaigns: " + JSON.stringify(value)));
+};
+
 const setInboxCampaignRead = (read) => {
-  NativeModules.LLLocalytics.setInboxCampaignRead({"campaignId": 98452, "read": read});
+  NativeModules.LLLocalytics.setInboxCampaignRead({"campaignId": 97797, "read": read});
 };
 
 const getInboxCampaignsUnreadCount = () => {
@@ -219,6 +304,11 @@ const tagInboxImpression = () => {
   NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 97797, "action": "click"});
   NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 97797, "action": "dismiss"});
   NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 97797, "action": "custom"});
+};
+
+//Push to Inbox needs to be run from Dashboard
+const tagPushToInboxImpression = () => {
+  NativeModules.LLLocalytics.tagImpressionForPushToInboxCampaign({"campaignId": 97797, "success": true});
 };
 
 const triggerPlacesNotification = () => {
@@ -280,6 +370,11 @@ const triggerRegions = () => {
   NativeModules.LLLocalytics.triggerRegions({"regions": [{"uniqueId": "Localytics Office"}], "event": "enter"});
 };
 
+const triggerRegion = () => {
+  NativeModules.LLLocalytics.triggerRegion({"region": {"uniqueId": "Localytics Office"}, "event": "enter"});
+  NativeModules.LLLocalytics.triggerRegion({"regions": {"uniqueId": "Localytics Office"}, "event": "enter"});
+};
+
 const setLocationEventsEnabled = () => {
   NativeModules.LLLocalytics.setLocationEventsEnabled({"enabled": true});
 };
@@ -304,8 +399,13 @@ const setLocation = () => {
   NativeModules.LLLocalytics.setLocation({"location": {"latitude": -120.5, "longitude": 76.12, "altitude": 40, "time": 1497056438, "accuracy": 14}});
 };
 
+const redirectLoggingToDisk = () => {
+NativeModules.LLLocalytics.redirectLoggingToDisk({});
+}
 const setLoggingEnabled = (enabled) => {
   NativeModules.LLLocalytics.setLoggingEnabled(enabled);
+  NativeModules.LLLocalytics.isLoggingEnabled().then((value) => {
+		if (enabled != value) {console.warn("Logging value mismatch ", value);} });
 };
 
 const isLoggingEnabled = () => {
@@ -324,8 +424,8 @@ const getLibraryVersion = () => {
   NativeModules.LLLocalytics.getLibraryVersion().then((value) => console.log("library version: " + value));
 };
 
-const setTestModeEnabled = () => {
-  NativeModules.LLLocalytics.setTestModeEnabled(true);
+const setTestModeEnabled = (enabled) => {
+  NativeModules.LLLocalytics.setTestModeEnabled(enabled);
 };
 
 const isTestModeEnabled = () => {
@@ -396,9 +496,18 @@ export default class LocalyticsReactTest extends Component {
         <Button onPress={setInAppAdIdParameterEnabled.bind(this, false)} title="Set In-App Ad ID Param Enabled -> No"/>
         <Button onPress={isInAppAdIdParameterEnabled} title="Is In-App Ad ID Param Enabled"/>
         <Button onPress={setInAppMessageConfiguration} title="Set In-App Message Configuration"/>
+
+        <Text style={styles.welcome}>
+          Inbox:
+        </Text>
+        <Button onPress={setInboxAdIdParameterEnabled.bind(this, true)} title="Set In-App Ad ID Param Enabled -> Yes"/>
+        <Button onPress={setInboxAdIdParameterEnabled.bind(this, false)} title="Set In-App Ad ID Param Enabled -> No"/>
+        <Button onPress={isInboxAdIdParameterEnabled} title="Is In-App Ad ID Param Enabled"/>
         <Button onPress={tagInAppImpression} title="Tag In-App Impression"/>
         <Button onPress={getInboxCampaigns} title="Get Inbox Campaigns"/>
+        <Button onPress={getAllInboxCampaigns} title="Get All Inbox Campaigns"/>
         <Button onPress={refreshInboxCampaigns} title="Refresh Inbox Campaigns"/>
+        <Button onPress={refreshAllInboxCampaigns} title="Refresh All Inbox Campaigns"/>
         <Button onPress={setInboxCampaignRead.bind(this, true)} title="Set Inbox Campaign As Read -> Read"/>
         <Button onPress={setInboxCampaignRead.bind(this, false)} title="Set Inbox Campaign As Read -> Unread"/>
         <Button onPress={getInboxCampaignsUnreadCount} title="Get Inbox Campaigns Unread Count"/>
@@ -418,16 +527,34 @@ export default class LocalyticsReactTest extends Component {
         <Button onPress={triggerRegions} title="Trigger Regions"/>
         <Button onPress={setLocationEventsEnabled} title="Set Location Events Enabled"/>
         <Text style={styles.welcome}>
-          Developer Options:
+          Logging:
         </Text>
+        <Button onPress={isLoggingEnabled} title="Is Logging Enabled"/>
         <Button onPress={setLoggingEnabled.bind(this, true)} title="Set Logging Enabled -> true"/>
         <Button onPress={setLoggingEnabled.bind(this, false)} title="Set Logging Enabled -> false"/>
-        <Button onPress={isLoggingEnabled} title="Is Logging Enabled"/>
+        <Button onPress={redirectLoggingToDisk} title="Redirect Logging to Disk"/>
+        <Text style={styles.welcome}>
+          Developer Options:
+        </Text>
         <Button onPress={getInstallId} title="Get Install ID"/>
         <Button onPress={getAppKey} title="Get App Key"/>
         <Button onPress={getLibraryVersion} title="Get Library Version"/>
-        <Button onPress={setTestModeEnabled} title="Set Test Mode Enabled"/>
         <Button onPress={isTestModeEnabled} title="Is Test Mode Enabled"/>
+        <Button onPress={setTestModeEnabled.bind(this, true)} title="Set Test Mode Enabled"/>
+        <Button onPress={setTestModeEnabled.bind(this, false)} title="Set Test Mode Disabled"/>
+
+
+        <Text style={styles.welcome}>
+          Validators:
+        </Text>
+        <Button onPress={pushValidators} title="Push Validators"/>
+        <Button onPress={notificationSettings.bind(this, false)} title="Notification Disabled"/>
+        <Button onPress={notificationSettings.bind(this, true)} title="Notification Enabled"/>
+        <Button onPress={sessionTimeoutValidators} title="Session Timeout"/>
+        <Button onPress={analyticsEventValidators} title="Analytics Events"/>
+        <Text style={styles.welcome}>
+          Spacer.....
+        </Text>
       </ScrollView>
     );
   }
