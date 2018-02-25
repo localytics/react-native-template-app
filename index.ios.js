@@ -28,11 +28,11 @@ const closeSession = () => {
 };
 
 const setOptedOut = (optedOut) => {
-  NativeModules.LLLocalytics.setOptedOut({"optedOut": optedOut});
+  NativeModules.LLLocalytics.setOptedOut(optedOut);
 };
 
 const isOptedOut = () => {
-  NativeModules.LLLocalytics.isOptedOut((optedOut) => console.log("opted out: " + optedOut));
+  NativeModules.LLLocalytics.isOptedOut().then((optedOut) => console.log("opted out: " + optedOut));
 };
 
 const tagEvent = () => {
@@ -61,7 +61,7 @@ const tagEvent = () => {
 };
 
 const tagScreen = () => {
-  NativeModules.LLLocalytics.tagScreen({"screen": "test"});
+  NativeModules.LLLocalytics.tagScreen("test");
 };
 
 const setCustomDimension = () => {
@@ -69,11 +69,11 @@ const setCustomDimension = () => {
 };
 
 const getCustomDimension = () => {
-  NativeModules.LLLocalytics.getCustomDimension({"dimension": 0}, (value) => console.log("custom dimension 0: " + value));
+  NativeModules.LLLocalytics.getCustomDimension(0).then((value) => console.log("custom dimension 0: " + value));
 };
 
 const setAnalyticsEventsEnabled = () => {
-  NativeModules.LLLocalytics.setAnalyticsEventsEnabled({"enabled": true});
+  NativeModules.LLLocalytics.setAnalyticsEventsEnabled(true);
 };
 
 const setProfileAttribute = () => {
@@ -125,10 +125,21 @@ const deleteProfileAttribute = () => {
 };
 
 const setCustomer = () => {
-  NativeModules.LLLocalytics.setCustomerEmail({"email": "email@test.com"});
-  NativeModules.LLLocalytics.setCustomerFirstName({"firstName": "first"});
-  NativeModules.LLLocalytics.setCustomerLastName({"lastName": "last"});
-  NativeModules.LLLocalytics.setCustomerFullName({"fullName": "full"});
+  NativeModules.LLLocalytics.setCustomerEmail("email@test.com");
+  NativeModules.LLLocalytics.setCustomerFirstName("first");
+  NativeModules.LLLocalytics.setCustomerLastName("last");
+  NativeModules.LLLocalytics.setCustomerFullName("full");
+  NativeModules.LLLocalytics.upload();
+  NativeModules.LLLocalytics.setCustomerEmail("");
+  NativeModules.LLLocalytics.setCustomerFirstName("");
+  NativeModules.LLLocalytics.setCustomerLastName("");
+  NativeModules.LLLocalytics.setCustomerFullName("");
+  NativeModules.LLLocalytics.upload();
+  NativeModules.LLLocalytics.setCustomerEmail(null);
+  NativeModules.LLLocalytics.setCustomerFirstName(null);
+  NativeModules.LLLocalytics.setCustomerLastName(null);
+  NativeModules.LLLocalytics.setCustomerFullName(null);
+  NativeModules.LLLocalytics.upload();
 };
 
 const triggerInAppMessage = () => {
@@ -144,23 +155,27 @@ const dismissCurrentInAppMessage = () => {
 }
 
 const setInAppMessageDismissButtonLocation = (location) => {
-  NativeModules.LLLocalytics.setInAppMessageDismissButtonLocation({"location": location});
+  NativeModules.LLLocalytics.setInAppMessageDismissButtonLocation(location);
 };
 
 const getInAppMessageDismissButtonLocation = () => {
-  NativeModules.LLLocalytics.getInAppMessageDismissButtonLocation((value) => console.log("button location: " + value));
+  NativeModules.LLLocalytics.getInAppMessageDismissButtonLocation().then((value) => console.log("button location: " + value));
 };
 
 const setInAppMessageDismissButtonHidden = (hidden) => {
-  NativeModules.LLLocalytics.setInAppMessageDismissButtonHidden({"hidden": hidden});
+  NativeModules.LLLocalytics.setInAppMessageDismissButtonHidden(hidden);
 };
 
 const setInAppAdIdParameterEnabled = (enabled) => {
-  NativeModules.LLLocalytics.setInAppAdIdParameterEnabled({"enabled": enabled});
+  if (enabled) {
+  NativeModules.LLLocalytics.setInAppAdIdParameterEnabled(enabled);
+  } else {
+  NativeModules.LLLocalytics.appendAdidToInAppUrls(enabled);
+  }
 };
 
 const isInAppAdIdParameterEnabled = () => {
-  NativeModules.LLLocalytics.isInAppAdIdParameterEnabled((value) => console.log("in-app ad id param enabled: " + value));
+  NativeModules.LLLocalytics.isAdidAppendedToInAppUrls().then((value) => console.log("in-app ad id param enabled: " + value));
 };
 
 const tagInAppImpression = () => {
@@ -185,11 +200,11 @@ const setInAppMessageConfiguration = () => {
 };
 
 const getInboxCampaigns = () => {
-  NativeModules.LLLocalytics.getInboxCampaigns((value) => console.log("inbox campaigns: " + JSON.stringify(value)));
+  NativeModules.LLLocalytics.getInboxCampaigns().then((value) => console.log("inbox campaigns: " + JSON.stringify(value)));
 };
 
 const refreshInboxCampaigns = () => {
-  NativeModules.LLLocalytics.refreshInboxCampaigns((value) => console.log("refresh inbox campaigns: " + JSON.stringify(value)));
+  NativeModules.LLLocalytics.refreshInboxCampaigns().then((value) => console.log("refresh inbox campaigns: " + JSON.stringify(value)));
 };
 
 const setInboxCampaignRead = (read) => {
@@ -197,7 +212,7 @@ const setInboxCampaignRead = (read) => {
 };
 
 const getInboxCampaignsUnreadCount = () => {
-  NativeModules.LLLocalytics.getInboxCampaignsUnreadCount((value) => console.log("inbox campaigns unread count: " + value));
+  NativeModules.LLLocalytics.getInboxCampaignsUnreadCount().then((value) => console.log("inbox campaigns unread count: " + value));
 };
 
 const tagInboxImpression = () => {
@@ -250,15 +265,15 @@ const setPlacesMessageConfigurationForUserNotifications = () => {
 };
 
 const setMessagingEventsEnabled = () => {
-  NativeModules.LLLocalytics.setMessagingEventsEnabled({"enabled": true});
+  NativeModules.LLLocalytics.setMessagingEventsEnabled(true);
 };
 
 const setLocationMonitoringEnabled = (enabled) => {
-  NativeModules.LLLocalytics.setLocationMonitoringEnabled({"enabled": enabled});
+  NativeModules.LLLocalytics.setLocationMonitoringEnabled(enabled);
 };
 
 const getGeofencesToMonitor = () => {
-  NativeModules.LLLocalytics.getGeofencesToMonitor({"latitude": 42.3601, "longitude": -71.0589}, (value) => console.log("geofences to monitor: " + JSON.stringify(value)));
+  NativeModules.LLLocalytics.getGeofencesToMonitor({"latitude": 42.3601, "longitude": -71.0589}).then((value) => console.log("geofences to monitor: " + JSON.stringify(value)));
 };
 
 const triggerRegions = () => {
@@ -274,15 +289,15 @@ const setIdentifier = () => {
 };
 
 const getIdentifier = () => {
-  NativeModules.LLLocalytics.getIdentifier({"identifier": "id1"}, (value) => console.log("identifier id1: " + value));
+  NativeModules.LLLocalytics.getIdentifier({"identifier": "id1"}).then((value) => console.log("identifier id1: " + value));
 };
 
 const setCustomerId = () => {
-  NativeModules.LLLocalytics.setCustomerId({"customerId": "cust_id"});
+  NativeModules.LLLocalytics.setCustomerId("cust_id");
 };
 
 const getCustomerId = () => {
-  NativeModules.LLLocalytics.getCustomerId((value) => console.log("customer ID: " + value));
+  NativeModules.LLLocalytics.getCustomerId().then((value) => console.log("customer ID: " + value));
 };
 
 const setLocation = () => {
@@ -290,31 +305,31 @@ const setLocation = () => {
 };
 
 const setLoggingEnabled = (enabled) => {
-  NativeModules.LLLocalytics.setLoggingEnabled({"enabled": enabled});
+  NativeModules.LLLocalytics.setLoggingEnabled(enabled);
 };
 
 const isLoggingEnabled = () => {
-  NativeModules.LLLocalytics.isLoggingEnabled((enabled) => console.log("logging enabled: " + enabled));
+  NativeModules.LLLocalytics.isLoggingEnabled().then((enabled) => console.log("logging enabled: " + enabled));
 };
 
 const getInstallId = () => {
-  NativeModules.LLLocalytics.getInstallId((value) => console.log("install id: " + value));
+  NativeModules.LLLocalytics.getInstallId().then((value) => console.log("install id: " + value));
 };
 
 const getAppKey = () => {
-  NativeModules.LLLocalytics.getAppKey((value) => console.log("app key: " + value));
+  NativeModules.LLLocalytics.getAppKey().then((value) => console.log("app key: " + value));
 };
 
 const getLibraryVersion = () => {
-  NativeModules.LLLocalytics.getLibraryVersion((value) => console.log("library version: " + value));
+  NativeModules.LLLocalytics.getLibraryVersion().then((value) => console.log("library version: " + value));
 };
 
 const setTestModeEnabled = () => {
-  NativeModules.LLLocalytics.setTestModeEnabled({"enabled": true});
+  NativeModules.LLLocalytics.setTestModeEnabled(true);
 };
 
 const isTestModeEnabled = () => {
-  NativeModules.LLLocalytics.isTestModeEnabled((value) => console.log("test mode enabled: " + value));
+  NativeModules.LLLocalytics.isTestModeEnabled().then((value) => console.log("test mode enabled: " + value));
 };
 
 export default class LocalyticsReactTest extends Component {

@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "localytics-react-native-dev": "file:../localytics-react-native",
+    "localytics-react-native-dev": "^1.2.12",
     "react": "16.2.0",
     "react-native": "0.52.0"
   },
