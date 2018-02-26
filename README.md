@@ -23,14 +23,18 @@ Next, follow the instructions to integrate Localytics.
 
 ## Installing Localytics
 
-### React Native version
+### React Native Version
 
 Ensure you are using React Native version 0.53.0, defined in your package.json file:
 `"react-native": "0.53.0"`
 
+### iOS Setup
+
+TBD
+
 ### Android Setup
 
-Ensure you are using the proper version of Android support library and minSdkVersion is high-enough in your app-level build.gradle file:
+Ensure you are using the proper version of Android support library and minSdkVersion in your app-level build.gradle file:
 
 `minSdkVersion 19`
 `dependencies { compile 'com.android.support:support-compat:26.0.2' }`
