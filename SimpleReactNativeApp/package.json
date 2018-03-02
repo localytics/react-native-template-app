@@ -17,7 +17,7 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "localytics-react-native-dev": "^1.2.13",
+    "localytics-react-native": "2.0.0",
     "react": "16.2.0",
     "react-native": "0.53.0"
   }
