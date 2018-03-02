@@ -2,6 +2,13 @@
 
 Sample apps demonstrating the usage of the Localytics React Native SDK.
 
+## Developer Setup
+
+1. `brew install node`
+2. `brew install watchman`
+3. `brew install yarn`
+4. `npm install -g react-native-cli`
+
 ## Creating your own app
 
 Using Facebook's docs (https://facebook.github.io/react-native/docs/getting-started.html), setup a new React Native app:
