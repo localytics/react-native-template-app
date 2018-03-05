@@ -5,8 +5,8 @@ import {
   FlatList
 } from 'react-native';
 
-import InboxListItem from './InboxListItem'
-import LLLocalytics from '../exports'
+import InboxListItem from './InboxListItem';
+import LLLocalytics from 'localytics-react-native-dev';
 
 export default class InboxListView extends React.Component {
   static navigationOptions = {
