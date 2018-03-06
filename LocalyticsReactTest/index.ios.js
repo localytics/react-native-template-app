@@ -16,6 +16,11 @@ import {
   NativeAppEventEmitter
 } from 'react-native';
 
+import LLLocalytics from 'localytics-react-native';
+
+console.log(LLLocalytics);
+console.log(NativeModules);
+
 const notificationSettings = (enabled) => {
   NativeModules.LLLocalytics.openSession();
   NativeModules.LLLocalytics.tagScreen("misc");
@@ -237,7 +242,7 @@ const setInAppMessageDismissButtonHidden = (hidden) => {
 
 const setInAppAdIdParameterEnabled = (enabled) => {
   if (enabled) {
-  NativeModules.LLLocalytics.setInAppAdIdParameterEnabled(enabled);
+  NativeModules.LLLocalytics.appendAdidToInAppUrls(enabled);
   } else {
   NativeModules.LLLocalytics.appendAdidToInAppUrls(enabled);
   }
@@ -316,7 +321,7 @@ const triggerPlacesNotification = () => {
 }
 
 const tagPlacesPushReceived = () => {
-  NativeModules.LLLocalytics.tagPlacesPushReceived({"campaignId": 2475});
+  NativeModules.LLLocalytics.tagPlacesPushReceived(2475);
 };
 
 const tagPlacesPushOpened = () => {
@@ -376,7 +381,7 @@ const triggerRegion = () => {
 };
 
 const setLocationEventsEnabled = () => {
-  NativeModules.LLLocalytics.setLocationEventsEnabled({"enabled": true});
+  NativeModules.LLLocalytics.setLocationEventsEnabled(true);
 };
 
 const setIdentifier = () => {
@@ -384,7 +389,7 @@ const setIdentifier = () => {
 };
 
 const getIdentifier = () => {
-  NativeModules.LLLocalytics.getIdentifier({"identifier": "id1"}).then((value) => console.log("identifier id1: " + value));
+  NativeModules.LLLocalytics.getIdentifier("id1").then((value) => console.log("identifier id1: " + value));
 };
 
 const setCustomerId = () => {
@@ -400,7 +405,7 @@ const setLocation = () => {
 };
 
 const redirectLoggingToDisk = () => {
-NativeModules.LLLocalytics.redirectLoggingToDisk({});
+NativeModules.LLLocalytics.redirectLogsToDisk({});
 }
 const setLoggingEnabled = (enabled) => {
   NativeModules.LLLocalytics.setLoggingEnabled(enabled);
@@ -413,7 +418,7 @@ const isLoggingEnabled = () => {
 };
 
 const getInstallId = () => {
-  NativeModules.LLLocalytics.getInstallId().then((value) => console.log("install id: " + value));
+  LLLocalytics.getInstallId().then((value) => console.log("install id: " + value));
 };
 
 const getAppKey = () => {
