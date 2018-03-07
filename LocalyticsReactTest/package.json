@@ -1,13 +1,13 @@
 {
   "name": "LocalyticsReactTest",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
   "dependencies": {
-    "localytics-react-native-dev": "^1.2.13",
+    "localytics-react-native": "^2.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0"
   },
