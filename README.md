@@ -6,7 +6,9 @@ Sample apps demonstrating the usage of the Localytics React Native SDK.
 #### LocalyticsReactTest
 Tests all of `localytics-react-native` APIs
 #### LocalyticsInbox
-Sample Inbox implementation
+Sample of a Localytics Inbox implementation
+#### LocalyticsPush
+Sample of a Localytics Push implementation
 
 ## Developer Setup
 
