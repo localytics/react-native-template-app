@@ -13,8 +13,9 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* LocalyticsPushTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LocalyticsPushTests.m */; };
 		0A3F0956204F1A90001C787D /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
-		0A3F0958204F1AA7001C787D /* Localytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3F0957204F1AA7001C787D /* Localytics.framework */; };
-		0A3F095B204F1ADC001C787D /* Localytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A3F0957204F1AA7001C787D /* Localytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABEFDE12050632900DD4821 /* Localytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABEFDE02050632800DD4821 /* Localytics.framework */; };
+		0ABEFDE22050632900DD4821 /* Localytics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0ABEFDE02050632800DD4821 /* Localytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0ABEFDE32050635E00DD4821 /* libLLLocalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3F0900204EF005001C787D /* libLLLocalytics.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -331,7 +332,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A3F095B204F1ADC001C787D /* Localytics.framework in CopyFiles */,
+				0ABEFDE22050632900DD4821 /* Localytics.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +348,8 @@
 		00E356EE1AD99517003FC87E /* LocalyticsPushTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalyticsPushTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* LocalyticsPushTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalyticsPushTests.m; sourceTree = "<group>"; };
-		0A3F0957204F1AA7001C787D /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../../../localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
+		0ABEFDE02050632800DD4821 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
+		0ABEFE6220506D6100DD4821 /* LocalyticsPush.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LocalyticsPush.entitlements; path = LocalyticsPush/LocalyticsPush.entitlements; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* LocalyticsPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalyticsPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,10 +383,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABEFDE32050635E00DD4821 /* libLLLocalytics.a in Frameworks */,
 				0A3F0956204F1A90001C787D /* libRCTActionSheet.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
-				0A3F0958204F1AA7001C787D /* Localytics.framework in Frameworks */,
+				0ABEFDE12050632900DD4821 /* Localytics.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -513,6 +516,7 @@
 		13B07FAE1A68108700A75B9A /* LocalyticsPush */ = {
 			isa = PBXGroup;
 			children = (
+				0ABEFE6220506D6100DD4821 /* LocalyticsPush.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -605,7 +609,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				0A3F0957204F1AA7001C787D /* Localytics.framework */,
+				0ABEFDE02050632800DD4821 /* Localytics.framework */,
 				13B07FAE1A68108700A75B9A /* LocalyticsPush */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LocalyticsPushTests */,
@@ -728,6 +732,14 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 2GRGSY42RT;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1261,6 +1273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LocalyticsPush/LocalyticsPush.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 2GRGSY42RT;
@@ -1285,6 +1298,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LocalyticsPush/LocalyticsPush.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2GRGSY42RT;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/localytics-react-native/ios/Frameworks";

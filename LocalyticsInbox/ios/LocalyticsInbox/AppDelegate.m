@@ -12,10 +12,21 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import Localytics;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [Localytics autoIntegrate:@"YOUR-LOCALYTICS-APP-KEY"
+      withLocalyticsOptions:@{
+                              LOCALYTICS_WIFI_UPLOAD_INTERVAL_SECONDS: @5,
+                              LOCALYTICS_GREAT_NETWORK_UPLOAD_INTERVAL_SECONDS: @10,
+                              LOCALYTICS_DECENT_NETWORK_UPLOAD_INTERVAL_SECONDS: @30,
+                              LOCALYTICS_BAD_NETWORK_UPLOAD_INTERVAL_SECONDS: @90
+                              }
+              launchOptions:launchOptions];
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

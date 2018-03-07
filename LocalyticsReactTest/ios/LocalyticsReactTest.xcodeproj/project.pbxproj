@@ -316,7 +316,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* LocalyticsReactTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalyticsReactTestTests.m; sourceTree = "<group>"; };
 		09109968204F4D9E00E8E392 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
-		09771040203FE22F00BB6A8C /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native-dev/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
+		09771040203FE22F00BB6A8C /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* LocalyticsReactTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalyticsReactTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1056,9 +1056,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 				);
 				INFOPLIST_FILE = LocalyticsReactTestTests/Info.plist;
@@ -1086,9 +1086,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native-dev/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
+					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 				);
 				INFOPLIST_FILE = LocalyticsReactTestTests/Info.plist;

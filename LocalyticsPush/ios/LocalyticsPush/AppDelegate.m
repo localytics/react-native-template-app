@@ -12,10 +12,38 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import Localytics;
+@import UserNotifications;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [Localytics setLoggingEnabled:YES];
+  [Localytics autoIntegrate:@"YOUR_LOCALYTICS_APP_KEY"
+      withLocalyticsOptions:@{
+                              LOCALYTICS_WIFI_UPLOAD_INTERVAL_SECONDS: @5,
+                              LOCALYTICS_GREAT_NETWORK_UPLOAD_INTERVAL_SECONDS: @10,
+                              LOCALYTICS_DECENT_NETWORK_UPLOAD_INTERVAL_SECONDS: @30,
+                              LOCALYTICS_BAD_NETWORK_UPLOAD_INTERVAL_SECONDS: @90
+                              }
+              launchOptions:launchOptions];
+  
+  [application registerForRemoteNotifications];
+  
+  if (NSClassFromString(@"UNUserNotificationCenter")) {
+    UNAuthorizationOptions options = (UNAuthorizationOptionBadge | UNAuthorizationOptionSound |UNAuthorizationOptionAlert);
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:options
+                                                                        completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                                                          [Localytics didRequestUserNotificationAuthorizationWithOptions:options
+                                                                                                                                 granted:granted];
+                                                                        }];
+  } else {
+    UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+    [application registerUserNotificationSettings:settings];
+  }
+  
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

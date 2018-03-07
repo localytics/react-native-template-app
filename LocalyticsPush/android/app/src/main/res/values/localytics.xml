@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Define your Localytics app key-->
-    <string name="ll_app_key" translatable="false">fb36f37a67a5204183e1407-d99de31c-218a-11e8-4a93-007c928ca240</string>
+    <string name="ll_app_key" translatable="false">YOUR_LOCALYTICS_APP_KEY</string>
 
     <!-- Toggle the Localytics referral receiver which is used to attribute sessions to
     their installation source -->

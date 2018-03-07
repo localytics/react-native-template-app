@@ -26,7 +26,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         <intent-filter>
-          <data android:scheme="ampd7cfd1aed2af6d5e1a53cd4-daadb15c-0839-11e8-7058-007c928ca240" /> 
+          <data android:scheme="ampYOUR_LOCALYTICS_APP_KEY" /> 
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT" />
           <category android:name="android.intent.category.BROWSABLE" />
