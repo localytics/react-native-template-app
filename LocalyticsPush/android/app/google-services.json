@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "439870828049",
+    "firebase_url": "https://reactnativelocalyticspush.firebaseio.com",
+    "project_id": "reactnativelocalyticspush",
+    "storage_bucket": "reactnativelocalyticspush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439870828049:android:a76d4c70f436bcea",
+        "android_client_info": {
+          "package_name": "com.localyticspush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439870828049-8us53170gak5q4t2h3rciiakv66nd6go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEPXjUl_pv54CzEkCLCt19tcssLzKvAWU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

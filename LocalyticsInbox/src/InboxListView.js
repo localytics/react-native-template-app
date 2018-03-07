@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import InboxListItem from './InboxListItem';
-import LLLocalytics from 'localytics-react-native-dev';
+import LLLocalytics from 'localytics-react-native';
 
 export default class InboxListView extends React.Component {
   static navigationOptions = {

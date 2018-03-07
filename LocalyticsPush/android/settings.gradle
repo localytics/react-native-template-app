@@ -1,4 +1,4 @@
-rootProject.name = 'LocalyticsInbox'
+rootProject.name = 'LocalyticsPush'
 include ':localytics-react-native'
 project(':localytics-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/localytics-react-native/android')
 
