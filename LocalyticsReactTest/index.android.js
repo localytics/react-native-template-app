@@ -16,184 +16,24 @@ import {
   PermissionsAndroid
 } from 'react-native';
 
-const upload = () => {
-  NativeModules.LLLocalytics.upload();
-};
-
-const openSession = () => {
-  NativeModules.LLLocalytics.openSession();
-};
-
-const closeSession = () => {
-  NativeModules.LLLocalytics.closeSession();
-};
-
-const setOptedOut = (optedOut) => {
-  NativeModules.LLLocalytics.setOptedOut({"optedOut": optedOut});
-};
-
-const isOptedOut = () => {
-  NativeModules.LLLocalytics.isOptedOut((optedOut) => console.log("opted out: " + optedOut));
-};
-
-const tagEvent = () => {
-  var attrs = {"string_key": "hello", "int_key": 5, "double_key": 3.14};
-  var customer = {"customerId": "test", "firstName": "test", "lastName": "test", "fullName": "test", "emailAddress": "test"};
-  var customer2 = {"customerId": "test2", "firstName": "test2", "lastName": "test2", "fullName": "test2", "emailAddress": "test2"};
-
-  // Normal event tags ("name" is required)
-  NativeModules.LLLocalytics.tagEvent({"name": "test"});
-  NativeModules.LLLocalytics.tagEvent({"name": "test", "attributes": attrs});
-  NativeModules.LLLocalytics.tagEvent({"name": "test", "attributes": attrs, "customerValueIncrease": 5});
-
-  // Standard event tags
-  NativeModules.LLLocalytics.tagPurchased({"itemName": "test", "itemId": "test", "itemType": "test", "itemPrice": 10, "attributes": attrs});
-  NativeModules.LLLocalytics.tagAddedToCart({"itemName": "test", "itemId": "test", "itemType": "test", "itemPrice": 10, "attributes": attrs});
-  NativeModules.LLLocalytics.tagStartedCheckout({"totalPrice": 20, "itemCount": 21, "attributes": attrs});
-  NativeModules.LLLocalytics.tagCompletedCheckout({"totalPrice": 20, "itemCount": 21, "attributes": attrs});
-  NativeModules.LLLocalytics.tagContentViewed({"contentName": "test", "contentId": "test", "contentType": "test", "attributes": attrs});
-  NativeModules.LLLocalytics.tagSearched({"queryText": "test", "contentType": "test", "resultCount": 11, "attributes": attrs});
-  NativeModules.LLLocalytics.tagShared({"contentName": "test", "contentId": "test", "contentType": "test", "methodName": "test", "attributes": attrs});
-  NativeModules.LLLocalytics.tagCustomerRegistered({"customer": customer, "methodName": "test", "attributes": attrs});
-  NativeModules.LLLocalytics.tagCustomerLoggedOut({"attributes": attrs});
-  NativeModules.LLLocalytics.tagContentRated({"contentName": "test", "contentId": "test", "contentType": "test", "rating": 9, "attributes": attrs});
-  NativeModules.LLLocalytics.tagCustomerLoggedIn({"customer": customer2, "methodName": "test", "attributes": attrs});
-  NativeModules.LLLocalytics.tagInvited({"methodName": "test", "attributes": attrs});
-};
-
-const tagScreen = () => {
-  NativeModules.LLLocalytics.tagScreen({"screen": "test"});
-};
-
-const setCustomDimension = () => {
-  NativeModules.LLLocalytics.setCustomDimension({"dimension": 0, "value": "test"});
-};
-
-const getCustomDimension = () => {
-  NativeModules.LLLocalytics.getCustomDimension({"dimension": 0}, (value) => console.log("custom dimension 0: " + value));
-};
-
-const setAnalyticsEventsEnabled = () => {
-  NativeModules.LLLocalytics.setAnalyticsEventsEnabled({"enabled": true});
-};
-
-const setProfileAttribute = () => {
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "string", "value": "test", "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "string", "value": "test", "scope": "org"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "string_arr", "value": ["test", "ing"], "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "string_arr", "value": ["test", "ing"], "scope": "org"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "number", "value": 5, "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "number", "value": 5, "scope": "org"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "number_arr", "value": [5, 6], "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "number_arr", "value": [5, 6], "scope": "org"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "date", "value": "2017-06-20", "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "date", "value": "2017-06-20", "scope": "org"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "date_arr", "value": ["2017-06-20", "2017-07-20"], "scope": "app"});
-  NativeModules.LLLocalytics.setProfileAttribute({"name": "date_arr", "value": ["2017-06-20", "2017-07-20"], "scope": "org"});
-};
-
-const addProfileAttributesToSet = () => {
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "string_arr", "values": ["test", "ing"], "scope": "app"});
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "string_arr", "values": ["test", "ing"], "scope": "org"});
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "number_arr", "values": [5, 6], "scope": "app"});
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "number_arr", "values": [5, 6], "scope": "org"});
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "date_arr", "values": ["2017-06-20", "2017-07-20"], "scope": "app"});
-  NativeModules.LLLocalytics.addProfileAttributesToSet({"name": "date_arr", "values": ["2017-06-20", "2017-07-20"], "scope": "org"});
-};
-
-const removeProfileAttributesFromSet = () => {
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "string_arr", "values": ["test", "ing"], "scope": "app"});
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "string_arr", "values": ["test", "ing"], "scope": "org"});
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "number_arr", "values": [5, 6], "scope": "app"});
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "number_arr", "values": [5, 6], "scope": "org"});
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "date_arr", "values": ["2017-06-20", "2017-07-20"], "scope": "app"});
-  NativeModules.LLLocalytics.removeProfileAttributesFromSet({"name": "date_arr", "values": ["2017-06-20", "2017-07-20"], "scope": "org"});
-};
-
-const incrementProfileAttribute = () => {
-  NativeModules.LLLocalytics.incrementProfileAttribute({"name": "inc", "value": 7, "scope": "app"});
-  NativeModules.LLLocalytics.incrementProfileAttribute({"name": "inc", "value": 7, "scope": "org"});
-};
-
-const decrementProfileAttribute = () => {
-  NativeModules.LLLocalytics.decrementProfileAttribute({"name": "dec", "value": 7, "scope": "app"});
-  NativeModules.LLLocalytics.decrementProfileAttribute({"name": "dec", "value": 7, "scope": "org"});
-};
-
-const deleteProfileAttribute = () => {
-  NativeModules.LLLocalytics.deleteProfileAttribute({"name": "delete", "scope": "app"});
-  NativeModules.LLLocalytics.deleteProfileAttribute({"name": "delete", "scope": "org"});
-};
-
-const setCustomer = () => {
-  NativeModules.LLLocalytics.setCustomerEmail({"email": "email@test.com"});
-  NativeModules.LLLocalytics.setCustomerFirstName({"firstName": "first"});
-  NativeModules.LLLocalytics.setCustomerLastName({"lastName": "last"});
-  NativeModules.LLLocalytics.setCustomerFullName({"fullName": "full"});
-};
-
-const triggerInAppMessage = () => {
-  NativeModules.LLLocalytics.triggerInAppMessage({"triggerName": "test_event", "attributes": {"key": "value"}});
-};
-
-const triggerInAppMessagesForSessionStart = () => {
-  NativeModules.LLLocalytics.triggerInAppMessagesForSessionStart();
-};
-
-const dismissCurrentInAppMessage = () => {
-  NativeModules.LLLocalytics.dismissCurrentInAppMessage();
-}
-
-const setInAppMessageDismissButtonLocation = (location) => {
-  NativeModules.LLLocalytics.setInAppMessageDismissButtonLocation({"location": location});
-};
-
-const getInAppMessageDismissButtonLocation = () => {
-  NativeModules.LLLocalytics.getInAppMessageDismissButtonLocation((value) => console.log("button location: " + value));
-};
-
-const setInAppMessageDismissButtonHidden = (hidden) => {
-  NativeModules.LLLocalytics.setInAppMessageDismissButtonHidden({"hidden": hidden});
-};
-
-const setInAppMessageConfiguration = () => {
-  var config = {
-    "dismissButtonLocation": "right",
-    /*"dismissButtonHidden": true,*/
-    /*"shouldShow": false, // global suppression */
-    /*"diy": true, // DIY (manually handle display and impression tagging) */
-    /*"delaySessionStart": true, // Must be set in MainApplication.java as well to handle initial launch */
-    "aspectRatio": 0.7,
-    "backgroundAlpha": 0.75,
-    "bannerOffsetDps": 20
-  };
-  NativeModules.LLLocalytics.setInAppMessageConfiguration({"config": config});
-};
-
-const tagInAppImpression = () => {
-  NativeModules.LLLocalytics.tagInAppImpression({"campaignId": 415743, "action": "click"});
-  NativeModules.LLLocalytics.tagInAppImpression({"campaignId": 415743, "action": "dismiss"});
-  NativeModules.LLLocalytics.tagInAppImpression({"campaignId": 415743, "action": "custom"});
-};
-
 const registerPush = () => {
-  NativeModules.LLLocalytics.registerPush({"senderId": "SENDER_ID"});
+  LLLocalytics.registerPush({"senderId": "SENDER_ID"});
 };
 
 const setPushRegistrationId = () => {
-  NativeModules.LLLocalytics.setPushRegistrationId({"registrationId": "test_reg_id"});
+  LLLocalytics.setPushRegistrationId({"registrationId": "test_reg_id"});
 };
 
 const getPushRegistrationId = () => {
-  NativeModules.LLLocalytics.getPushRegistrationId((value) => console.log("push registration id: " + value));
+  LLLocalytics.getPushRegistrationId((value) => console.log("push registration id: " + value));
 };
 
 const setNotificationsDisabled = (disabled) => {
-  NativeModules.LLLocalytics.setNotificationsDisabled({"disabled": disabled});
+  LLLocalytics.setNotificationsDisabled({"disabled": disabled});
 };
 
 const areNotificationsDisabled = () => {
-  NativeModules.LLLocalytics.areNotificationsDisabled((value) => console.log("notifications disabled: " + value));
+  LLLocalytics.areNotificationsDisabled((value) => console.log("notifications disabled: " + value));
 };
 
 const setPushMessageConfiguration = () => {
@@ -208,41 +48,7 @@ const setPushMessageConfiguration = () => {
     /*"shouldShow": false, // global suppression */
     "priority": 0 // from android.support.v4.app.NotificationCompat.PRIORITY_DEFAULT
   };
-  NativeModules.LLLocalytics.setPushMessageConfiguration({"config": config});
-};
-
-const getInboxCampaigns = () => {
-  NativeModules.LLLocalytics.getInboxCampaigns((value) => console.log("inbox campaigns: " + JSON.stringify(value)));
-};
-
-const refreshInboxCampaigns = () => {
-  NativeModules.LLLocalytics.refreshInboxCampaigns((value) => console.log("refresh inbox campaigns: " + JSON.stringify(value)));
-};
-
-const setInboxCampaignRead = (read) => {
-  NativeModules.LLLocalytics.setInboxCampaignRead({"campaignId": 101751, "read": read});
-};
-
-const getInboxCampaignsUnreadCount = () => {
-  NativeModules.LLLocalytics.getInboxCampaignsUnreadCount((value) => console.log("inbox campaigns unread count: " + value));
-};
-
-const tagInboxImpression = () => {
-  NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 101751, "action": "click"});
-  NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 101751, "action": "dismiss"});
-  NativeModules.LLLocalytics.tagInboxImpression({"campaignId": 101751, "action": "custom"});
-};
-
-const triggerPlacesNotification = () => {
-  NativeModules.LLLocalytics.triggerPlacesNotification({"campaignId": 2010, "regionId": "chalet"});
-}
-
-const tagPlacesPushReceived = () => {
-  NativeModules.LLLocalytics.tagPlacesPushReceived({"campaignId": 2010});
-};
-
-const tagPlacesPushOpened = () => {
-  NativeModules.LLLocalytics.tagPlacesPushOpened({"campaignId": 2010});
+  LLLocalytics.setPushMessageConfiguration({"config": config});
 };
 
 const setPlacesMessageConfiguration = () => {
@@ -258,11 +64,7 @@ const setPlacesMessageConfiguration = () => {
     "diy": true, // DIY (manually handle display and impression tagging)
     "priority": 1 // from android.support.v4.app.NotificationCompat.PRIORITY_HIGH
   };
-  NativeModules.LLLocalytics.setPlacesMessageConfiguration({"config": config});
-};
-
-const setMessagingEventsEnabled = () => {
-  NativeModules.LLLocalytics.setMessagingEventsEnabled({"enabled": true});
+  LLLocalytics.setPlacesMessageConfiguration({"config": config});
 };
 
 async function requestCameraPermission() {
@@ -288,68 +90,8 @@ const getFineLocationPermission = () => {
   requestCameraPermission();
 };
 
-const setLocationMonitoringEnabled = (enabled) => {
-  NativeModules.LLLocalytics.setLocationMonitoringEnabled({"enabled": enabled});
-};
-
 const getGeofencesToMonitor = () => {
-  NativeModules.LLLocalytics.getGeofencesToMonitor({"latitude": 42.3601, "longitude": -71.0589}, (value) => console.log("geofences to monitor: " + JSON.stringify(value)));
-};
-
-const triggerRegions = () => {
-  NativeModules.LLLocalytics.triggerRegions({"regions": [{"uniqueId": "chalet"}], "event": "enter"});
-};
-
-const setLocationEventsEnabled = () => {
-  NativeModules.LLLocalytics.setLocationEventsEnabled({"enabled": true});
-};
-
-const setIdentifier = () => {
-  NativeModules.LLLocalytics.setIdentifier({"identifier": "id1", "value": "val"});
-};
-
-const getIdentifier = () => {
-  NativeModules.LLLocalytics.getIdentifier({"identifier": "id1"}, (value) => console.log("identifier id1: " + value));
-};
-
-const setCustomerId = () => {
-  NativeModules.LLLocalytics.setCustomerId({"customerId": "cust_id"});
-};
-
-const getCustomerId = () => {
-  NativeModules.LLLocalytics.getCustomerId((value) => console.log("customer ID: " + value));
-};
-
-const setLocation = () => {
-  NativeModules.LLLocalytics.setLocation({"location": {"latitude": -120.5, "longitude": 76.12, "altitude": 40, "time": 1497056438, "accuracy": 14}});
-};
-
-const setLoggingEnabled = (enabled) => {
-  NativeModules.LLLocalytics.setLoggingEnabled({"enabled": enabled});
-};
-
-const isLoggingEnabled = () => {
-  NativeModules.LLLocalytics.isLoggingEnabled((enabled) => console.log("logging enabled: " + enabled));
-};
-
-const getInstallId = () => {
-  NativeModules.LLLocalytics.getInstallId((value) => console.log("install id: " + value));
-};
-
-const getAppKey = () => {
-  NativeModules.LLLocalytics.getAppKey((value) => console.log("app key: " + value));
-};
-
-const getLibraryVersion = () => {
-  NativeModules.LLLocalytics.getLibraryVersion((value) => console.log("library version: " + value));
-};
-
-const setTestModeEnabled = () => {
-  NativeModules.LLLocalytics.setTestModeEnabled({"enabled": true});
-};
-
-const isTestModeEnabled = () => {
-  NativeModules.LLLocalytics.isTestModeEnabled((value) => console.log("test mode enabled: " + value));
+  LLLocalytics.getGeofencesToMonitor({"latitude": 42.3601, "longitude": -71.0589}, (value) => console.log("geofences to monitor: " + JSON.stringify(value)));
 };
 
 export default class LocalyticsReactTest extends Component {
