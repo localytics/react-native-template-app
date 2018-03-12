@@ -1057,9 +1057,6 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 				);
 				INFOPLIST_FILE = LocalyticsReactTestTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1086,8 +1083,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios",
-					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
-					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 					"$(SRCROOT)/../node_modules/localytics-react-native/ios/**",
 				);
