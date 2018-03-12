@@ -341,6 +341,16 @@ this.isTestModeEnabled = () => {
   LLLocalytics.isTestModeEnabled().then((value) => console.log("test mode enabled: " + value));
 }
 
+const inboxAdidValidator = (enabled) => {
+  LLLocalytics.appendAdidToInboxUrls(enabled);
+  LLLocalytics.isAdidAppendedToInboxUrls().then((value) => { enabled==value? console.log("AdidToInboxUrls pass") : console.warn("AdidToInboxUrls mismatch");});
+}
+
+const inappAdidValidator = (enabled) => {
+  LLLocalytics.appendAdidToInAppUrls(enabled);
+  LLLocalytics.isAdidAppendedToInAppUrls().then((value) => { enabled==value? console.log("AdidToInAppUrls pass") : console.warn("AdidToInAppUrls mismatch");});
+}
+
 this.analyticsEventValidators = () => {
   LLLocalytics.setMessagingEventsEnabled(true);
   const emitter = new NativeEventEmitter(NativeModules.LLAnalyticsEmitter);

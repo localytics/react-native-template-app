@@ -187,6 +187,10 @@ export default class LocalyticsReactTest extends Component {
         <Button onPress={notificationSettings.bind(this, true)} title="Notification Enabled"/>
         <Button onPress={sessionTimeoutValidators} title="Session Timeout"/>
         <Button onPress={analyticsEventValidators} title="Analytics Events"/>
+        <Button onPress={inboxAdidValidator.bind(this, true)} title="Inbox ADID -> true"/>
+        <Button onPress={inboxAdidValidator.bind(this, false)} title="Inbox ADID -> false"/>
+        <Button onPress={inappAdidValidator.bind(this, true)} title="Inapp ADID -> true"/>
+        <Button onPress={inappAdidValidator.bind(this, false)} title="Inapp ADID -> false"/>
         <Text style={styles.welcome}>
           Spacer.....
         </Text>
