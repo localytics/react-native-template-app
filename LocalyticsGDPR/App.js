@@ -1,18 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import LLLocalytics from 'localytics-react-native';
 
 export default class App extends React.Component {
 
   componentWillMount() {
 
-    //make a server call here to get opt out status
     var optOutStatus = false;
-    Localytics.setPrivacyOptedOut(optOutStatus);
-    
-    //if setting customer Id, use the following:
-    //Localytics.setCustomerIdWithPrivacyOptedOut("id123", optOutStatus);
+    //make server call to get opt out status and, if applicable, authenticate the user
 
-    Localytics.pauseDataUploading(false);
+    //if setting customer Id, use the following:
+    LLLocalytics.setCustomerIdWithPrivacyOptedOut("id123", optOutStatus);
+    //if not setting customer Id, use the following:
+    //Localytics.setPrivacyOptedOut(optOutStatus);
+
+    //you've set the opted out flag to the proper value, you can now safely turn on uploads
+    LLLocalytics.pauseDataUploading(false);
+
+    //ensure you're not sending Places notifications to users who have opted out of tracking (requires Places implementation)
+    //LLLocalytics.setLocationMonitoringEnabled(!optOutStatus);
   }
 
   render() {

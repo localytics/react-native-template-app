@@ -14,8 +14,8 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* LocalyticsGDPRTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* LocalyticsGDPRTests.m */; };
 		0302BF300B034768A7542886 /* libLLLocalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B546E53E9ECA4A16BA1AE88D /* libLLLocalytics.a */; };
-		0A377B0F2075648B00E7F089 /* Localytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A377B0E2075648B00E7F089 /* Localytics.framework */; };
-		0A377B102075648B00E7F089 /* Localytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A377B0E2075648B00E7F089 /* Localytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A16AD8E207BF4ED00F645B8 /* Localytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16AD8D207BF4ED00F645B8 /* Localytics.framework */; };
+		0A16AD8F207BF4ED00F645B8 /* Localytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A16AD8D207BF4ED00F645B8 /* Localytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -326,13 +326,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0A377B112075648B00E7F089 /* Embed Frameworks */ = {
+		0A16AD8C207BF4BD00F645B8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A377B102075648B00E7F089 /* Localytics.framework in Embed Frameworks */,
+				0A16AD8F207BF4ED00F645B8 /* Localytics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +349,7 @@
 		00E356EE1AD99517003FC87E /* LocalyticsGDPRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalyticsGDPRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* LocalyticsGDPRTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalyticsGDPRTests.m; sourceTree = "<group>"; };
-		0A377B0E2075648B00E7F089 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
+		0A16AD8D207BF4ED00F645B8 /* Localytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Localytics.framework; path = "../node_modules/localytics-react-native/ios/Frameworks/Localytics.framework"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* LocalyticsGDPR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalyticsGDPR.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,7 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A377B0F2075648B00E7F089 /* Localytics.framework in Frameworks */,
+				0A16AD8E207BF4ED00F645B8 /* Localytics.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -617,7 +617,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				0A377B0E2075648B00E7F089 /* Localytics.framework */,
+				0A16AD8D207BF4ED00F645B8 /* Localytics.framework */,
 				13B07FAE1A68108700A75B9A /* LocalyticsGDPR */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* LocalyticsGDPRTests */,
@@ -679,7 +679,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				0A377B112075648B00E7F089 /* Embed Frameworks */,
+				0A16AD8C207BF4BD00F645B8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
