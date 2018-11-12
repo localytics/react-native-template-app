@@ -16,6 +16,9 @@ import {
   PermissionsAndroid
 } from 'react-native';
 
+import LLLocalytics from 'localytics-react-native';
+require('./common.js')();
+
 const registerPush = () => {
   LLLocalytics.registerPush({"senderId": "SENDER_ID"});
 };
@@ -192,7 +195,7 @@ export default class LocalyticsReactTest extends Component {
         <Button onPress={getInstallId} title="Get Install ID"/>
         <Button onPress={getAppKey} title="Get App Key"/>
         <Button onPress={getLibraryVersion} title="Get Library Version"/>
-        <Button onPress={setTestModeEnabled} title="Set Test Mode Enabled"/>
+        <Button onPress={setTestModeEnabled.bind(this, true)} title="Set Test Mode Enabled"/>
         <Button onPress={isTestModeEnabled} title="Is Test Mode Enabled"/>
       </ScrollView>
     );

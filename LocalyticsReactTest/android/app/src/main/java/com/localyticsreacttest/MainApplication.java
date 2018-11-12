@@ -32,7 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected String getJSMainModuleName() {
-      return "index";
+      return "index.android";
     }
   };
 
@@ -47,6 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
 
     Localytics.setLoggingEnabled(true);
-    Localytics.autoIntegrate(this, "YOUR-LOCALYTICS-APP-KEY");
+    Localytics.autoIntegrate(this);
+
   }
 }
