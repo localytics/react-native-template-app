@@ -7,9 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "localytics-react-native": "^2.1.0",
-    "react": "16.2.0",
-    "react-native": "0.52.0"
+    "localytics-react-native": "^2.3.0",
+    "react": "^16.6.0-alpha.8af6728",
+    "react-native": "0.57.4"
   },
   "devDependencies": {
     "babel-jest": "20.0.0",
