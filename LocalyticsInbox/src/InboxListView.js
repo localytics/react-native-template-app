@@ -36,15 +36,15 @@ export default class InboxListView extends React.Component {
           ({ item }) =>
             <TouchableOpacity
               onPress={() => {
-                  if (item.hasCreative) {
-                      LLLocalytics.inboxListItemTapped({'campaignId': item.campaignId});
-                      LLLocalytics.refreshInboxCampaigns().then((campaigns) => {
+                  LLLocalytics.inboxListItemTapped({'campaignId': item.campaignId});
+                  LLLocalytics.refreshInboxCampaigns().then((campaigns) => {
                         try {
                           this.setState({ dataSource: campaigns });
                         } catch(e) {
                           console.error(e);
                         }
                       });
+                  if (item.hasCreative) {
                       navigate('InboxDetailView', { creative: item.campaignId });
                   }
                }
