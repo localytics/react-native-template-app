@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {
-  WebView
-} from 'react-native';
+import { LLWebView } from 'localytics-react-native';
 
 export default class InboxDetailView extends React.Component {
   static navigationOptions = {
@@ -10,10 +8,10 @@ export default class InboxDetailView extends React.Component {
   };
 
   render() {
-    const { navigation: { state: { params: { creative } } } } = this.props;
+    const { navigation: { state: { params: { campaignId } } } } = this.props;
 
     return (
-      <WebView source={{ uri: creative }} />
+      <LLWebView campaign={ campaignId } />
     );
   }
 }

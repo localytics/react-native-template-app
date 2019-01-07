@@ -36,17 +36,16 @@ export default class InboxListView extends React.Component {
           ({ item }) =>
             <TouchableOpacity
               onPress={() => {
-                  if (item.hasCreative) {
-                      LLLocalytics.setInboxCampaignRead({'campaignId': item.campaignId, 'read': true});
-                      LLLocalytics.tagInboxImpression({'campaignId': item.campaignId, 'action': 'click'});
-                      LLLocalytics.refreshInboxCampaigns().then((campaigns) => {
+                  LLLocalytics.inboxListItemTapped({'campaignId': item.campaignId});
+                  LLLocalytics.refreshInboxCampaigns().then((campaigns) => {
                         try {
                           this.setState({ dataSource: campaigns });
                         } catch(e) {
                           console.error(e);
                         }
                       });
-                      navigate('InboxDetailView', { creative: item.creativeFilePath });
+                  if (item.hasCreative) {
+                      navigate('InboxDetailView', { creative: item.campaignId });
                   }
                }
               }

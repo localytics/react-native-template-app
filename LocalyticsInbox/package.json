@@ -17,7 +17,7 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "localytics-react-native": "^2.1.0",
+    "localytics-react-native": "2.3.1",
     "react": "16.2.0",
     "react-native": "0.53.0",
     "react-navigation": "^1.2.1"
