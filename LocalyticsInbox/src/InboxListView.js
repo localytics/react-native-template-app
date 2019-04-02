@@ -45,7 +45,7 @@ export default class InboxListView extends React.Component {
                         }
                       });
                   if (item.hasCreative) {
-                      navigate('InboxDetailView', { creative: item.campaignId });
+                      navigate('InboxDetailView', { campaignId: item.campaignId });
                   }
                }
               }

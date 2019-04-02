@@ -9,10 +9,10 @@ export default class InboxDetailView extends React.Component {
   };
 
   render() {
-    const { navigation: { state: { params: { creative } } } } = this.props;
+    const { navigation: { state: { params: { campaignId } } } } = this.props;
 
     return (
-      <LLWebView style={styles.webView} campaign={ creative } />
+      <LLWebView style={styles.webView} campaign={ campaignId } />
     );
   }
 }
